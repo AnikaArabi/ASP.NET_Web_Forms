@@ -1,0 +1,98 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="EmployeeGradeTracking.Site" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title><%: Page.Title %></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <script src="/Scripts/bootstrap.bundle.js"></script>
+   
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 70px;
+        }
+
+        .main {
+            min-height: calc(100vh - 150px);
+        }
+        .err {
+            font-size:.75rem;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="headContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+         <asp:ScriptManager runat="server">
+            <Scripts>
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" />
+            </Scripts>
+        </asp:ScriptManager>
+        <nav class="navbar navbar-light bg-light navbar-expand-md fixed-top shadow-sm">
+            <div class="container-fluid">
+                <span class="navbar-brand">Employee<sup>DB</sup></span>
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a href="/Default.aspx" class="nav-link">Home</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Employee Management
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/EmployeeGradeTracking/Departments.aspx">Departments</a></li>
+                                <li><a class="dropdown-item" href="Designations.aspx">Designations</a></li>
+                                <li><a class="dropdown-item" href="Grades.aspx">Grades</a></li>
+                                <li><a class="dropdown-item" href="EmployeesSql.aspx">Employees</a></li>
+                                <li><a class="dropdown-item" href="DesignationHistorys.aspx">Designation History</a></li>
+                                <li><a class="dropdown-item" href="GradeHistoriesReportPage.aspx">GradeHistories Report</a></li>
+                                <li><a class="dropdown-item" href="EmployeesReportPage.aspx">Employee Report</a></li>
+                                <li><a class="dropdown-item" href="EmployeeByDeptReportPage.aspx">EmployeeByDept Report</a></li>
+                            </ul>
+                        </li>
+                        
+                    </ul>
+                    <asp:LoginView ID="LoginView1" runat="server">
+                        <AnonymousTemplate>
+                            <ul class="navbar-nav">
+                                <%--<li class="nav-item">
+                                    <a href="DonorForm.aspx" class="nav-link">Donor Form</a>
+                                </li>--%>
+                                <li class="nav-item">
+                                    <a href="login.aspx" class="nav-link">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="register.aspx" class="nav-link">Register</a>
+                                </li>
+                            </ul>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            <span class="navbar-text">
+                                <asp:LoginName ID="LoginName1" runat="server" />
+                            </span>
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <asp:LinkButton CssClass="nav-link" ID="LinkButton1" runat="server">Logout</asp:LinkButton></li>
+                            </ul>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid main">
+            <asp:ContentPlaceHolder ID="mainContent" runat="server">
+                <h1 class="display-1">ASP.NET WebForms</h1>
+            </asp:ContentPlaceHolder>
+        </div>
+        <footer class="container-fluid">
+            <p>&copy;Copiright - <%: DateTime.Now.Year %></p>
+
+        </footer>
+        <asp:ContentPlaceHolder ID="footer" runat="server"></asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>
